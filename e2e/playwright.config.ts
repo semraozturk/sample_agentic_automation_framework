@@ -37,7 +37,7 @@ export default defineConfig({
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {
-    command: "python3 -m http.server 3000",
+    command: "npx --yes serve -l 3000",
     cwd: paperTrail,
     url: "http://localhost:3000",
     reuseExistingServer: !isCi,
