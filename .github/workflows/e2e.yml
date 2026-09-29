@@ -1,0 +1,90 @@
+name: E2E
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: e2e-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  playwright:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      # Read by both data-check.mjs and playwright.config.ts, so the reservation
+      # for one-time-use data matches the workers that will consume it.
+      PLAYWRIGHT_WORKERS: 2
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: e2e/package-lock.json
+
+      - name: Verify automation prerequisites
+        run: node scripts/verify-automation-prereqs.mjs
+
+      - name: Install E2E dependencies
+        run: npm ci --prefix e2e
+
+      - name: Install Playwright Chromium
+        run: npx --prefix e2e playwright install --with-deps chromium
+
+      - name: Traceability matrix up to date
+        run: node scripts/traceability-matrix.mjs --check
+
+      - name: Build sample database
+        run: node data/seed.mjs --reset --verify --quiet
+
+      # Blocks on exit 1 (invalid, exhausted, unreachable) and tolerates exit 2
+      # (warnings only), so the suite never fails on preventable data problems.
+      - name: Test data readiness
+        run: |
+          set +e
+          node scripts/data-check.mjs --all --reserve --run-id run-ci-${{ github.run_id }}
+          code=$?
+          set -e
+          if [ "$code" = "1" ]; then
+            echo "::error::Test data is not ready — see the data-readiness artifact"
+            exit 1
+          fi
+
+      - name: Run Playwright
+        run: npm --prefix e2e test
+        env:
+          CI: true
+
+      - name: Upload Playwright report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            e2e/playwright-report/
+            e2e/test-results/
+            .quality/*/screenshots/
+          retention-days: 14
+
+      - name: Upload data readiness report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: data-readiness
+          path: .quality/runs/run-ci-${{ github.run_id }}/
+          retention-days: 14
+          if-no-files-found: ignore
+
+      - name: Publish test report
+        if: always()
+        uses: dorny/test-reporter@v1
+        with:
+          name: Playwright JUnit
+          path: e2e/test-results/junit.xml
+          reporter: java-junit
+          fail-on-error: false

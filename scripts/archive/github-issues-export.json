@@ -1,0 +1,408 @@
+[
+  {
+    "storyId": "US-001",
+    "title": "US-001: Home explains the product and roles",
+    "body": "## US-001 · Home explains the product and roles\n\n**Feature:** F-UI-1 · Product home\n**Priority:** 1\n**Effort:** M (2 story points)\n**Type:** ui\n**Status:** Done\n\n### User story\n\nAs a renter who has just been sent this link, I want to understand in one screen what this tool does, so that I can decide whether to spend five minutes on it.\n\n### Acceptance criteria\n\n- **US-001-AC-1:** Given I open index.html, when the page loads, then I see the problem stated, a numbered how-it-works list, and all four roles named.\n- **US-001-AC-2:** Given I read the page, when I reach the limits section, then it says plainly that this is a record and not legal advice or a verdict.\n- **US-001-AC-3:** Given I am on the home page, when I click Start a record, then I am taken to start.html. (The page now exists; remaining US-002 criteria still open.)\n- **US-001-AC-4:** Given I open the home page on a phone-width screen, when I read it, then nothing is cut off and I never scroll sideways.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:UI",
+      "effort:M",
+      "status:done"
+    ],
+    "state": "closed",
+    "priority": 1,
+    "status": "Done"
+  },
+  {
+    "storyId": "US-014",
+    "title": "US-014: Work board lists every story in priority order",
+    "body": "## US-014 · Work board lists every story in priority order\n\n**Feature:** F-TRK-1 · This work board\n**Priority:** 2\n**Effort:** L (3 story points)\n**Type:** qa\n**Status:** Done\n\n### User story\n\nAs the developer, I want one table of stories with type, priority, effort, and status, so that I always know what to build next and what \"done\" means for it.\n\n### Acceptance criteria\n\n- **US-014-AC-1:** Given I open /tracker, when the page loads, then every user story appears as one table row showing its type, priority, title, effort, and status.\n- **US-014-AC-2:** Given I click a story title in the table, when the page jumps, then I land on that story's full detail with its acceptance criteria.\n- **US-014-AC-3:** Given I read the table top to bottom, when I check the priority column, then the numbers run 1 upwards with no gaps and no two stories sharing a number.\n- **US-014-AC-4:** Given any story on the page, when I open its acceptance criteria, then there are between three and five, each written as Given / When / Then.\n- **US-014-AC-5:** Given a story's status, when I compare its table row with the badge on its detail section, then the two agree, and the status is one of To do, Pending, or Done.\n\n_This story built the in-repo work board. It is closed — backlog now lives in GitHub Issues._\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:QA",
+      "effort:L",
+      "status:done"
+    ],
+    "state": "closed",
+    "priority": 2,
+    "status": "Done"
+  },
+  {
+    "storyId": "US-002",
+    "title": "US-002: Start form captures the tenancy",
+    "body": "## US-002 · Start form captures the tenancy\n\n**Feature:** F-UI-2 · Start a record\n**Priority:** 3\n**Effort:** M (2 story points)\n**Type:** ui\n**Status:** Pending\n\n### User story\n\nAs a tenant, I want to enter my address, move-in date, and deposit amount, so that every later entry is attached to a specific tenancy.\n\n### Acceptance criteria\n\n- **US-002-AC-1:** Given I am on start.html, when the page loads, then I see labelled fields for address, move-in date, and deposit amount.\n- **US-002-AC-2:** Given address or move-in date is empty, when I submit, then I stay on the page, see one error message, and nothing is saved.\n- **US-002-AC-3:** Given both required fields are filled, when I submit, then I land on the log page and see my address as the heading.\n- **US-002-AC-4:** Given a tenancy has been created, when I look for a way to change its address later, then the tenancy details are shown read-only, because the log's entries are attached to them.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:UI",
+      "effort:M",
+      "status:pending"
+    ],
+    "state": "open",
+    "priority": 3,
+    "status": "Pending"
+  },
+  {
+    "storyId": "US-003",
+    "title": "US-003: Roles are named at setup",
+    "body": "## US-003 · Roles are named at setup\n\n**Feature:** F-UI-2 · Start a record\n**Priority:** 4\n**Effort:** S (1 story points)\n**Type:** ui\n**Status:** To do\n\n### User story\n\nAs a tenant, I want to say who the landlord or agent is, so that there is somewhere for a report to be delivered.\n\n### Acceptance criteria\n\n- **US-003-AC-1:** Given I am on the start form, when I look at it, then there is a field for the landlord or agent contact.\n- **US-003-AC-2:** Given I have not filled that field, when I open the log page, then the log tells me reports cannot be delivered yet and offers to add a contact.\n- **US-003-AC-3:** Given I have named a landlord contact, when I open the log page, then the tenancy summary shows that contact.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:UI",
+      "effort:S"
+    ],
+    "state": "open",
+    "priority": 4,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-004",
+    "title": "US-004: Room-by-room checklist",
+    "body": "## US-004 · Room-by-room checklist\n\n**Feature:** F-UI-3 · Condition report\n**Priority:** 5\n**Effort:** L (3 story points)\n**Type:** ui\n**Status:** To do\n\n### User story\n\nAs a tenant in my first week, I want a short list per room instead of a blank page, so that I actually finish it.\n\n### Acceptance criteria\n\n- **US-004-AC-1:** Given I open the condition report, when it loads, then rooms are pre-listed and each has a condition choice and a notes field.\n- **US-004-AC-2:** Given a room does not apply to my home, when I mark it not applicable, then it is recorded as skipped rather than silently missing.\n- **US-004-AC-3:** Given I am recording a room, when I set its condition, then I choose from a fixed list rather than typing free text, so two rooms can be compared later.\n- **US-004-AC-4:** Given some rooms are still untouched, when I look at the checklist, then it says how many rooms are still unrecorded.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:UI",
+      "effort:L"
+    ],
+    "state": "open",
+    "priority": 5,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-005",
+    "title": "US-005: Photos attach to a room",
+    "body": "## US-005 · Photos attach to a room\n\n**Feature:** F-UI-3 · Condition report\n**Priority:** 6\n**Effort:** L (3 story points)\n**Type:** ui\n**Status:** To do\n\n### User story\n\nAs a tenant, I want each photo tied to the room it shows, so that a photo of a scuff can be found two years later.\n\n### Acceptance criteria\n\n- **US-005-AC-1:** Given I am on a room, when I add photos, then they appear under that room and nowhere else.\n- **US-005-AC-2:** Given a photo is attached, when I view it later, then the room name and the date it was added are shown with it.\n- **US-005-AC-3:** Given I attach a photo, when it is stored, then the original file name is kept with it.\n- **US-005-AC-4:** Given I attached the wrong photo, when I look for a remove control, then there is none — I add a dated note correcting it instead.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:UI",
+      "effort:L"
+    ],
+    "state": "open",
+    "priority": 6,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-006",
+    "title": "US-006: Report is sealed on submit",
+    "body": "## US-006 · Report is sealed on submit\n\n**Feature:** F-UI-3 · Condition report\n**Priority:** 7\n**Effort:** M (2 story points)\n**Type:** ui\n**Status:** To do\n\n### User story\n\nAs a landlord, I want to know the move-in report was not edited after the fact, so that I can take it seriously.\n\n### Acceptance criteria\n\n- **US-006-AC-1:** Given I have submitted the condition report, when I reopen it, then the fields are read-only and the submitted date is shown.\n- **US-006-AC-2:** Given a sealed report, when I need to change something, then I can only add a dated amendment, and both versions stay visible.\n- **US-006-AC-3:** Given I am about to submit, when I confirm, then I am warned first that sealing cannot be undone.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:UI",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 7,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-007",
+    "title": "US-007: Report an issue with a date stamp",
+    "body": "## US-007 · Report an issue with a date stamp\n\n**Feature:** F-UI-4 · Report an issue & the log\n**Priority:** 8\n**Effort:** M (2 story points)\n**Type:** ui\n**Status:** To do\n\n### User story\n\nAs a tenant, I want to report a problem and have the date fixed by the app, so that \"I told you in March\" is provable.\n\n### Acceptance criteria\n\n- **US-007-AC-1:** Given I submit an issue, when it appears in the log, then it carries a date and time I did not type.\n- **US-007-AC-2:** Given I submit an issue, when I look at the entry, then it shows what I described and which room it belongs to.\n- **US-007-AC-3:** Given the description is empty, when I submit, then I stay on the page, see one error message, and nothing is appended to the log.\n- **US-007-AC-4:** Given the problem started before today, when I report it, then I can give the date it started, and the log keeps that separately from the date I reported it.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:UI",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 8,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-008",
+    "title": "US-008: Log shows entries newest first",
+    "body": "## US-008 · Log shows entries newest first\n\n**Feature:** F-UI-4 · Report an issue & the log\n**Priority:** 9\n**Effort:** M (2 story points)\n**Type:** ui\n**Status:** To do\n\n### User story\n\nAs either side, I want one chronological list of everything that happened, so that nobody has to reconstruct it from memory.\n\n### Acceptance criteria\n\n- **US-008-AC-1:** Given several entries exist, when I open the log, then the newest is at the top and each shows its date.\n- **US-008-AC-2:** Given the log is empty, when I open it, then I am pointed at the condition report as the first thing to do.\n- **US-008-AC-3:** Given entries were written by different people, when I read the log, then each entry shows the role that wrote it.\n- **US-008-AC-4:** Given an entry belongs to an issue, when I click that entry, then I land on the issue with its full history.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:UI",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 9,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-009",
+    "title": "US-009: Issue moves through fixed states",
+    "body": "## US-009 · Issue moves through fixed states\n\n**Feature:** F-UI-4 · Report an issue & the log\n**Priority:** 10\n**Effort:** M (2 story points)\n**Type:** ui\n**Status:** To do\n\n### User story\n\nAs either side, I want an issue to have one clear status, so that \"we are dealing with it\" has a meaning.\n\n### Acceptance criteria\n\n- **US-009-AC-1:** Given an issue exists, when I view it, then its status is exactly one of: reported, acknowledged, scheduled, resolved, disputed.\n- **US-009-AC-2:** Given a status changes, when I look at the log, then the change is itself a dated entry, not a silent overwrite of the old status.\n- **US-009-AC-3:** Given nobody has responded, when a set number of days pass, then the log records \"no reply\" as a fact with a date.\n- **US-009-AC-4:** Given an issue is resolved, when the same problem happens again, then I raise a new issue that references the old one, rather than reopening it.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:UI",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 10,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-010",
+    "title": "US-010: Landlord opens a scoped view",
+    "body": "## US-010 · Landlord opens a scoped view\n\n**Feature:** F-UI-5 · Landlord reply screen\n**Priority:** 11\n**Effort:** M (2 story points)\n**Type:** ui\n**Status:** To do\n\n### User story\n\nAs a landlord, I want to open one link and see only this tenancy, so that I do not have to create an account to answer a tenant.\n\n### Acceptance criteria\n\n- **US-010-AC-1:** Given I have a landlord link, when I open it, then I see this tenancy's log with no signup step.\n- **US-010-AC-2:** Given I have a landlord link, when I try a tenant-only action, then it is not offered to me at all.\n- **US-010-AC-3:** Given I hold a link for a different tenancy, when I open it, then I see that tenancy only and nothing of this one.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:UI",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 11,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-011",
+    "title": "US-011: Landlord replies into the log",
+    "body": "## US-011 · Landlord replies into the log\n\n**Feature:** F-UI-5 · Landlord reply screen\n**Priority:** 12\n**Effort:** M (2 story points)\n**Type:** ui\n**Status:** To do\n\n### User story\n\nAs a landlord, I want my reply to sit in the same record as the report, so that my side of the story is on the file too.\n\n### Acceptance criteria\n\n- **US-011-AC-1:** Given I am on an issue, when I acknowledge, schedule, or close it, then a dated entry attributed to me is appended.\n- **US-011-AC-2:** Given I have replied, when the tenant opens the log, then they see the same entry with the same date.\n- **US-011-AC-3:** Given I have replied, when I look for a way to edit or withdraw that reply, then there is none — changing my mind means a second dated entry.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:UI",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 12,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-012",
+    "title": "US-012: Move-out compares to move-in",
+    "body": "## US-012 · Move-out compares to move-in\n\n**Feature:** F-UI-6 · Move-out pack\n**Priority:** 13\n**Effort:** L (3 story points)\n**Type:** ui\n**Status:** To do\n\n### User story\n\nAs a tenant at the end of a tenancy, I want each room shown then and now, so that fair wear and tear is visible rather than argued.\n\n### Acceptance criteria\n\n- **US-012-AC-1:** Given both reports exist, when I open the comparison, then each room shows move-in and move-out side by side with both dates.\n- **US-012-AC-2:** Given a room was never recorded at move-in, when I view the comparison, then it says so instead of implying the room was fine.\n- **US-012-AC-3:** Given a room's condition changed, when I read that row, then it states both recorded conditions as facts and does not say whose fault it is.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:UI",
+      "effort:L"
+    ],
+    "state": "open",
+    "priority": 13,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-013",
+    "title": "US-013: Pack prints as one document",
+    "body": "## US-013 · Pack prints as one document\n\n**Feature:** F-UI-6 · Move-out pack\n**Priority:** 14\n**Effort:** M (2 story points)\n**Type:** ui\n**Status:** To do\n\n### User story\n\nAs a tenant making a deposit claim, I want one printable file, so that I can hand the whole history to a scheme or a court.\n\n### Acceptance criteria\n\n- **US-013-AC-1:** Given I open the pack, when I print it, then site navigation and footer chrome are hidden and only the record prints.\n- **US-013-AC-2:** Given the pack is generated, when I read the first page, then it summarises the tenancy, the deposit, and how many entries the log holds.\n- **US-013-AC-3:** Given the pack runs to several pages, when I check any one of them, then it carries the tenancy address and the date the pack was generated.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:UI",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 14,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-015",
+    "title": "US-015: Tenancy saves in this browser",
+    "body": "## US-015 · Tenancy saves in this browser\n\n**Feature:** F-JS-1 · Browser persistence\n**Priority:** 15\n**Effort:** S (1 story points)\n**Type:** js\n**Status:** To do\n\n### User story\n\nAs a tenant, I want my tenancy to survive a refresh, so that the app is worth typing into.\n\n### Acceptance criteria\n\n- **US-015-AC-1:** Given I submitted the start form, when I refresh the log page, then my address and dates are still shown.\n- **US-015-AC-2:** Given I open the site in a different browser, when I look for my tenancy, then it is not there, and the page says plainly that the record lives in this browser only.\n- **US-015-AC-3:** Given nothing has been saved yet, when I open the log page directly, then I am sent to the start form instead of shown an empty shell.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:JS",
+      "effort:S"
+    ],
+    "state": "open",
+    "priority": 15,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-016",
+    "title": "US-016: Entries append, never overwrite",
+    "body": "## US-016 · Entries append, never overwrite\n\n**Feature:** F-JS-1 · Browser persistence\n**Priority:** 16\n**Effort:** M (2 story points)\n**Type:** js\n**Status:** To do\n\n### User story\n\nAs either side, I want new entries added to the end of a list, so that history cannot be quietly rewritten.\n\n### Acceptance criteria\n\n- **US-016-AC-1:** Given the log has three entries, when I add a fourth, then all four exist and the first three are byte-for-byte unchanged.\n- **US-016-AC-2:** Given the store is inspected directly, when I look at the shape, then entries are an ordered list, not fields on a single object.\n- **US-016-AC-3:** Given a write is interrupted, when I reload the page, then the log holds either the whole new entry or none of it, never half of one.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:JS",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 16,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-017",
+    "title": "US-017: Timestamps come from the clock",
+    "body": "## US-017 · Timestamps come from the clock\n\n**Feature:** F-JS-1 · Browser persistence\n**Priority:** 17\n**Effort:** S (1 story points)\n**Type:** js\n**Status:** To do\n\n### User story\n\nAs a reader of the log, I want dates the author did not choose, so that the record means something.\n\n### Acceptance criteria\n\n- **US-017-AC-1:** Given any entry is created, when it is stored, then its timestamp comes from the clock and no form field can set it.\n- **US-017-AC-2:** Given an event happened earlier than it was logged, when I record it, then the reported date and the logged date are two separate visible values.\n- **US-017-AC-3:** Given a timestamp is displayed, when I read it, then it shows the time as well as the date, because \"the same day\" is often the whole argument.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:JS",
+      "effort:S"
+    ],
+    "state": "open",
+    "priority": 17,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-018",
+    "title": "US-018: Corrections add a new entry",
+    "body": "## US-018 · Corrections add a new entry\n\n**Feature:** F-JS-1 · Browser persistence\n**Priority:** 18\n**Effort:** M (2 story points)\n**Type:** js\n**Status:** To do\n\n### User story\n\nAs someone who made a typo, I want to correct the record without deleting anything, so that the log stays trustworthy.\n\n### Acceptance criteria\n\n- **US-018-AC-1:** Given an entry exists, when I correct it, then a new entry marked as a correction is appended and the original remains visible.\n- **US-018-AC-2:** Given a correction has been written, when I read the original entry, then it is marked as corrected and points at the correction.\n- **US-018-AC-3:** Given I am writing a correction, when I submit it, then it carries its own clock timestamp, so both when the mistake was made and when it was fixed are on the record.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:JS",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 18,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-019",
+    "title": "US-019: Entries are read-only once written",
+    "body": "## US-019 · Entries are read-only once written\n\n**Feature:** F-EVI-1 · Evidence integrity\n**Priority:** 19\n**Effort:** M (2 story points)\n**Type:** sec\n**Status:** To do\n\n### User story\n\nAs a landlord asked to trust a tenant's log, I want to know entries cannot be edited later, so that the dates mean what they say.\n\n### Acceptance criteria\n\n- **US-019-AC-1:** Given an entry is stored, when any code path tries to change its text or date, then the attempt is refused rather than silently applied.\n- **US-019-AC-2:** Given an entry is displayed, when I look for a delete control, then there is none anywhere in the product.\n- **US-019-AC-3:** Given a page is handed an entry to render, when that page changes what it was given, then the stored entry is unaffected, because the page received a copy.\n- **US-019-AC-4:** Given the code is reviewed, when I search it, then no function exists whose job is to update or remove a stored entry.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:Integrity",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 19,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-020",
+    "title": "US-020: Every entry records its author",
+    "body": "## US-020 · Every entry records its author\n\n**Feature:** F-EVI-1 · Evidence integrity\n**Priority:** 20\n**Effort:** S (1 story points)\n**Type:** sec\n**Status:** To do\n\n### User story\n\nAs a reader of the pack, I want to know which side wrote each line, so that a reply is not mistaken for a report.\n\n### Acceptance criteria\n\n- **US-020-AC-1:** Given any entry, when I view it, then it shows the role that wrote it: tenant, landlord, contractor, or the system.\n- **US-020-AC-2:** Given the app itself recorded something, such as \"no reply after 14 days\", when I view that entry, then its author is shown as the system and not as a person.\n- **US-020-AC-3:** Given an entry has been written, when anything tries to change its author, then the attempt is refused like any other edit.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:Integrity",
+      "effort:S"
+    ],
+    "state": "open",
+    "priority": 20,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-021",
+    "title": "US-021: Delivery is separate from reading",
+    "body": "## US-021 · Delivery is separate from reading\n\n**Feature:** F-EVI-1 · Evidence integrity\n**Priority:** 21\n**Effort:** L (3 story points)\n**Type:** sec\n**Status:** To do\n\n### User story\n\nAs a tenant whose landlord ignores messages, I want \"sent\" and \"opened\" recorded as different facts, so that silence is itself on the record.\n\n### Acceptance criteria\n\n- **US-021-AC-1:** Given a report is delivered, when I view the entry, then sent, delivered, and first opened are three distinct values.\n- **US-021-AC-2:** Given the landlord never opens the link, when I generate the pack, then it states the report was delivered and not opened, with dates.\n- **US-021-AC-3:** Given a report was sent but delivery has not been confirmed, when I view the entry, then the delivered and opened values are shown as empty rather than hidden, so an unknown is not read as a no.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:Integrity",
+      "effort:L"
+    ],
+    "state": "open",
+    "priority": 21,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-022",
+    "title": "US-022: One link per role",
+    "body": "## US-022 · One link per role\n\n**Feature:** F-ACC-1 · Scoped access links\n**Priority:** 22\n**Effort:** L (3 story points)\n**Type:** sec\n**Status:** To do\n\n### User story\n\nAs a tenant, I want separate links for landlord, contractor, and read-only reader, so that sharing one does not hand over the others.\n\n### Acceptance criteria\n\n- **US-022-AC-1:** Given a tenancy exists, when links are issued, then each role gets a different token and the tokens are not derivable from each other.\n- **US-022-AC-2:** Given I hold a read-only link, when I try to write anything, then no write action is available or accepted.\n- **US-022-AC-3:** Given a token is presented, when it is checked, then it names exactly one tenancy and one role, and editing the URL cannot change either.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:Integrity",
+      "effort:L"
+    ],
+    "state": "open",
+    "priority": 22,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-023",
+    "title": "US-023: Contractor link opens one issue",
+    "body": "## US-023 · Contractor link opens one issue\n\n**Feature:** F-ACC-1 · Scoped access links\n**Priority:** 23\n**Effort:** M (2 story points)\n**Type:** sec\n**Status:** To do\n\n### User story\n\nAs a tenant, I want a plumber to see only the leak, so that a tradesperson does not get my whole tenancy history.\n\n### Acceptance criteria\n\n- **US-023-AC-1:** Given a contractor link scoped to one issue, when it is opened, then only that issue and its entries are visible.\n- **US-023-AC-2:** Given a contractor link, when it is used against another issue's address, then the response is a 404, not a 403.\n- **US-023-AC-3:** Given a contractor adds a note, when it appears in the log, then it is attributed to the contractor and both tenant and landlord can read it.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:Integrity",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 23,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-024",
+    "title": "US-024: Links can be revoked",
+    "body": "## US-024 · Links can be revoked\n\n**Feature:** F-ACC-1 · Scoped access links\n**Priority:** 24\n**Effort:** M (2 story points)\n**Type:** sec\n**Status:** To do\n\n### User story\n\nAs a tenant whose agent changed, I want to revoke an old link, so that a former agent stops having access.\n\n### Acceptance criteria\n\n- **US-024-AC-1:** Given I revoke a link, when it is opened afterwards, then it no longer works and the revocation is a dated entry in the log.\n- **US-024-AC-2:** Given I revoke one role's link, when the other roles use theirs, then those still work.\n- **US-024-AC-3:** Given a revoked link, when I issue a replacement, then a new token is created and the revoked one never becomes valid again.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:Integrity",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 24,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-025",
+    "title": "US-025: API create tenancy",
+    "body": "## US-025 · API create tenancy\n\n**Feature:** F-API-1 · The server\n**Priority:** 25\n**Effort:** M (2 story points)\n**Type:** api\n**Status:** To do\n\n### User story\n\nAs the front end, I want to create a tenancy over HTTP and get role tokens back, so that the record does not live in one browser.\n\n### Acceptance criteria\n\n- **US-025-AC-1:** Given a valid body, when I POST /api/tenancies, then I get 201 with a tenancy id and one token per role.\n- **US-025-AC-2:** Given a body with no address, when I POST /api/tenancies, then I get 400 in the standard error shape and no tenancy is created.\n- **US-025-AC-3:** Given a tenancy has been created, when I try to read its tokens again from the API, then they are not returned a second time — the create response was the only copy.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:API",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 25,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-026",
+    "title": "US-026: API append log entry",
+    "body": "## US-026 · API append log entry\n\n**Feature:** F-API-1 · The server\n**Priority:** 26\n**Effort:** M (2 story points)\n**Type:** api\n**Status:** To do\n\n### User story\n\nAs the front end, I want one endpoint that appends an entry, so that every write goes through the same door.\n\n### Acceptance criteria\n\n- **US-026-AC-1:** Given a token with write rights, when I POST an entry, then it is appended and returned with a server timestamp and an author role.\n- **US-026-AC-2:** Given a read-only token, when I POST an entry, then I get 403 and nothing is appended.\n- **US-026-AC-3:** Given an entry has been appended, when I fetch the log, then it is last in the list and every earlier entry is unchanged.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:API",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 26,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-027",
+    "title": "US-027: API rejects edits to entries",
+    "body": "## US-027 · API rejects edits to entries\n\n**Feature:** F-API-1 · The server\n**Priority:** 27\n**Effort:** M (2 story points)\n**Type:** api\n**Status:** To do\n\n### User story\n\nAs the owner of the product's only real promise, I want the server to have no way to mutate an entry, so that append-only is enforced and not merely intended.\n\n### Acceptance criteria\n\n- **US-027-AC-1:** Given an existing entry, when I send PUT, PATCH, or DELETE to it, then the response is 405 and the entry is unchanged.\n- **US-027-AC-2:** Given the storage layer, when it is reviewed, then no update or delete statement exists against the entries table.\n- **US-027-AC-3:** Given the database account the API connects with, when its grants are inspected, then it holds insert and select on the entries table and nothing else.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:API",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 27,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-028",
+    "title": "US-028: Server owns the timestamp",
+    "body": "## US-028 · Server owns the timestamp\n\n**Feature:** F-API-1 · The server\n**Priority:** 28\n**Effort:** S (1 story points)\n**Type:** api\n**Status:** To do\n\n### User story\n\nAs a reader who may be a court, I want dates set by the server, so that a wrong device clock cannot forge history.\n\n### Acceptance criteria\n\n- **US-028-AC-1:** Given a client sends its own timestamp, when the entry is stored, then the client value is ignored for the logged date.\n- **US-028-AC-2:** Given a stored entry, when I read its logged date, then it is UTC with an explicit offset, not a local time string.\n- **US-028-AC-3:** Given a client says when the event actually happened, when the entry is stored, then that date is kept as a separate reported-date field beside the server's logged date.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:API",
+      "effort:S"
+    ],
+    "state": "open",
+    "priority": 28,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-029",
+    "title": "US-029: Read-only export endpoint",
+    "body": "## US-029 · Read-only export endpoint\n\n**Feature:** F-API-1 · The server\n**Priority:** 29\n**Effort:** M (2 story points)\n**Type:** api\n**Status:** To do\n\n### User story\n\nAs a deposit scheme, I want an export I know was not assembled selectively, so that I can rely on it.\n\n### Acceptance criteria\n\n- **US-029-AC-1:** Given a reader token, when I fetch the export, then it contains every entry, in order, with no filter parameters accepted.\n- **US-029-AC-2:** Given an export, when I read its header, then it states how many entries it contains and when it was generated.\n- **US-029-AC-3:** Given a contractor token, when I fetch the export, then it is refused — the whole record is not a contractor's to read.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:API",
+      "effort:M"
+    ],
+    "state": "open",
+    "priority": 29,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-030",
+    "title": "US-030: One error contract",
+    "body": "## US-030 · One error contract\n\n**Feature:** F-API-1 · The server\n**Priority:** 30\n**Effort:** S (1 story points)\n**Type:** api\n**Status:** To do\n\n### User story\n\nAs a client developer, I want every failure to look the same, so that error handling is written once.\n\n### Acceptance criteria\n\n- **US-030-AC-1:** Given any failing request, when I read the body, then it has the same shape with a stable machine-readable code.\n- **US-030-AC-2:** Given the server hits an unexpected error, when I read the 500 body, then it carries a request id I can quote and no stack trace, file path, or SQL.\n- **US-030-AC-3:** Given two fields fail validation, when I read the body, then both are listed inside that same error shape, not returned one at a time.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:API",
+      "effort:S"
+    ],
+    "state": "open",
+    "priority": 30,
+    "status": "To do"
+  },
+  {
+    "storyId": "US-031",
+    "title": "US-031: Suite maps to story ids",
+    "body": "## US-031 · Suite maps to story ids\n\n**Feature:** F-QA-1 · Automation pack\n**Priority:** 31\n**Effort:** L (3 story points)\n**Type:** qa\n**Status:** To do\n\n### User story\n\nAs the developer and tester, I want each automated check named after an AC id, so that a red run tells me which promise broke.\n\n### Acceptance criteria\n\n- **US-031-AC-1:** Given the suite runs, when a check fails, then its name contains the AC id it covers.\n- **US-031-AC-2:** Given the integrity stories (F-EVI-1), when the suite is tagged, then they are marked P0 and run on every change.\n- **US-031-AC-3:** Given a story gains a new acceptance criterion, when the suite runs, then it reports which AC ids have no check, so coverage gaps are visible rather than assumed.\n\n---\nMigrated from `paper-trail/tracker/` on 2026-09-02.",
+    "labels": [
+      "user-story",
+      "feature:QA",
+      "effort:L"
+    ],
+    "state": "open",
+    "priority": 31,
+    "status": "To do"
+  }
+]

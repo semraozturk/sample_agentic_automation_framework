@@ -1,0 +1,33 @@
+---
+description: How to work in this repo — product constraints and naming
+alwaysApply: true
+---
+
+# Working in cursor_practice
+
+Practice portfolio, not production. Prefer small, reviewable changes and match
+existing patterns in the file you are editing.
+
+## Small slices
+
+One user story per turn (one AC if the story is large). Do not implement
+several unrelated stories in one go unless the user asks.
+
+## Product code (`paper-trail/**`)
+
+- Static HTML/CSS/JS only. No framework, bundler, build step, or npm deps.
+- One shared stylesheet: `paper-trail/css/styles.css`. No per-page CSS.
+- Stage ladder: A static screens, B `localStorage` + JS, C a server. Don't
+  skip a stage unless asked.
+
+## The one rule
+
+Nothing written to the log can be edited or deleted — corrections are
+appended, timestamps come from a clock, never a form field. If a change
+would let someone rewrite history, stop and say so before writing it.
+
+## Naming
+
+Stories are `US-001`, criteria `US-001-AC-1`. Name automated checks after the
+AC they cover (`US-002-AC-2`, not `test_form_validation`). Never renumber or
+reuse an id — reopen the story instead.

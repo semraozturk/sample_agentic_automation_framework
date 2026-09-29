@@ -1,0 +1,188 @@
+{
+  "US-001": {
+    "issue": 2,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/2",
+    "status": "Done",
+    "priority": 1
+  },
+  "US-014": {
+    "issue": 3,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/3",
+    "status": "Done",
+    "priority": 2
+  },
+  "US-002": {
+    "issue": 4,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/4",
+    "status": "Pending",
+    "priority": 3
+  },
+  "US-003": {
+    "issue": 5,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/5",
+    "status": "To do",
+    "priority": 4
+  },
+  "US-004": {
+    "issue": 6,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/6",
+    "status": "To do",
+    "priority": 5
+  },
+  "US-005": {
+    "issue": 7,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/7",
+    "status": "To do",
+    "priority": 6
+  },
+  "US-006": {
+    "issue": 8,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/8",
+    "status": "To do",
+    "priority": 7
+  },
+  "US-007": {
+    "issue": 9,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/9",
+    "status": "To do",
+    "priority": 8
+  },
+  "US-008": {
+    "issue": 10,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/10",
+    "status": "To do",
+    "priority": 9
+  },
+  "US-009": {
+    "issue": 11,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/11",
+    "status": "To do",
+    "priority": 10
+  },
+  "US-010": {
+    "issue": 12,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/12",
+    "status": "To do",
+    "priority": 11
+  },
+  "US-011": {
+    "issue": 13,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/13",
+    "status": "To do",
+    "priority": 12
+  },
+  "US-012": {
+    "issue": 14,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/14",
+    "status": "To do",
+    "priority": 13
+  },
+  "US-013": {
+    "issue": 15,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/15",
+    "status": "To do",
+    "priority": 14
+  },
+  "US-015": {
+    "issue": 16,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/16",
+    "status": "To do",
+    "priority": 15
+  },
+  "US-016": {
+    "issue": 17,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/17",
+    "status": "To do",
+    "priority": 16
+  },
+  "US-017": {
+    "issue": 18,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/18",
+    "status": "To do",
+    "priority": 17
+  },
+  "US-018": {
+    "issue": 19,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/19",
+    "status": "To do",
+    "priority": 18
+  },
+  "US-019": {
+    "issue": 20,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/20",
+    "status": "To do",
+    "priority": 19
+  },
+  "US-020": {
+    "issue": 21,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/21",
+    "status": "To do",
+    "priority": 20
+  },
+  "US-021": {
+    "issue": 22,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/22",
+    "status": "To do",
+    "priority": 21
+  },
+  "US-022": {
+    "issue": 23,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/23",
+    "status": "To do",
+    "priority": 22
+  },
+  "US-023": {
+    "issue": 24,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/24",
+    "status": "To do",
+    "priority": 23
+  },
+  "US-024": {
+    "issue": 25,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/25",
+    "status": "To do",
+    "priority": 24
+  },
+  "US-025": {
+    "issue": 26,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/26",
+    "status": "To do",
+    "priority": 25
+  },
+  "US-026": {
+    "issue": 27,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/27",
+    "status": "To do",
+    "priority": 26
+  },
+  "US-027": {
+    "issue": 28,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/28",
+    "status": "To do",
+    "priority": 27
+  },
+  "US-028": {
+    "issue": 29,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/29",
+    "status": "To do",
+    "priority": 28
+  },
+  "US-029": {
+    "issue": 30,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/30",
+    "status": "To do",
+    "priority": 29
+  },
+  "US-030": {
+    "issue": 31,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/31",
+    "status": "To do",
+    "priority": 30
+  },
+  "US-031": {
+    "issue": 32,
+    "url": "https://github.com/semraozturk/sample_agentic_automation_framework/issues/32",
+    "status": "To do",
+    "priority": 31
+  }
+}

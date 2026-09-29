@@ -1,0 +1,14 @@
+{
+  "name": "paper-trail-api",
+  "private": true,
+  "type": "module",
+  "description": "Stage C append-only API for Paper Trail. Lives outside paper-trail/ so product HTML stays free of npm.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.2.1"
+  }
+}

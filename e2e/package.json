@@ -1,0 +1,14 @@
+{
+  "name": "paper-trail-e2e",
+  "private": true,
+  "description": "Playwright regression for Paper Trail. Lives outside paper-trail/ so product HTML stays free of npm.",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:report": "playwright test",
+    "report:open": "playwright show-report playwright-report"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}

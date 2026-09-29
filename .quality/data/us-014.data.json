@@ -1,0 +1,37 @@
+{
+  "$schema": "./manifest.schema.json",
+  "version": 1,
+  "story": "us-014",
+  "datasets": [
+    {
+      "id": "DS-us-014-02",
+      "usedBy": ["TC-02"],
+      "traces": ["US-014-AC-2"],
+      "entity": "anchor",
+      "lifecycle": "reusable",
+      "source": { "kind": "static" },
+      "fields": {
+        "href": { "type": "string", "required": true, "pattern": "^#US-\\d{3}$" }
+      },
+      "records": [{ "href": "#US-001" }],
+      "notes": "Anchor target from TC-02. The tracker screen itself has since moved to GitHub Issues."
+    },
+    {
+      "id": "DS-us-014-05",
+      "usedBy": ["TC-05"],
+      "traces": ["US-014-AC-5"],
+      "entity": "status",
+      "lifecycle": "reusable",
+      "source": { "kind": "static" },
+      "fields": {
+        "status": {
+          "type": "enum",
+          "required": true,
+          "values": ["To do", "Pending", "Done"]
+        }
+      },
+      "records": [{ "status": "To do" }, { "status": "Pending" }, { "status": "Done" }],
+      "notes": "The only statuses TC-05 accepts. A fourth value appearing in the product is a product bug, not a data problem."
+    }
+  ]
+}

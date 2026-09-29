@@ -1,0 +1,54 @@
+{
+  "$schema": "../manifest.schema.json",
+  "version": 1,
+  "story": "one-time-use",
+  "datasets": [
+    {
+      "id": "DS-one-time-use-01",
+      "usedBy": ["TC-01"],
+      "entity": "inviteToken",
+      "lifecycle": "one-time-use",
+      "demandPerRun": 1,
+      "minAvailable": 10,
+      "staleAfterDays": 120,
+      "source": {
+        "kind": "db",
+        "connection": "sample",
+        "table": "invite_tokens",
+        "key": "token",
+        "where": "expires_at > strftime('%Y-%m-%dT%H:%M:%fZ','now')"
+      },
+      "fields": {
+        "token": { "type": "uuid", "required": true, "unique": true },
+        "role": {
+          "type": "enum",
+          "required": true,
+          "values": ["tenant", "landlord", "reader"]
+        },
+        "expires_at": { "type": "datetime", "required": true, "future": true },
+        "created_at": { "type": "datetime", "required": true }
+      },
+      "notes": "Field names mirror the columns. Spent tokens leave a lease event behind, so availability shrinks without any row being edited."
+    },
+    {
+      "id": "DS-one-time-use-02",
+      "usedBy": ["TC-02"],
+      "entity": "tenancy",
+      "lifecycle": "reusable",
+      "source": {
+        "kind": "db",
+        "connection": "sample",
+        "table": "tenancies",
+        "key": "id",
+        "where": "deposit IS NOT NULL"
+      },
+      "fields": {
+        "id": { "type": "uuid", "required": true, "unique": true },
+        "address": { "type": "string", "required": true, "minLength": 3 },
+        "move_in": { "type": "date", "required": true, "notAfter": "today" },
+        "deposit": { "type": "currency", "required": true, "min": 0 }
+      },
+      "notes": "A reusable db dataset: read, never changed, pinned by a predicate so other rows cannot affect it."
+    }
+  ]
+}

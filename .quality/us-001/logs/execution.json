@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "id": "TC-01",
+      "status": "PASS",
+      "note": "problem h2=1, how-it-works items=4, roles present"
+    },
+    {
+      "id": "TC-02",
+      "status": "PASS",
+      "note": "limits section: record, not verdict, not lawyer/rights/legal advice"
+    },
+    {
+      "id": "TC-03",
+      "status": "PASS",
+      "note": "url=http://localhost:3000/start"
+    },
+    {
+      "id": "TC-04",
+      "status": "PASS",
+      "note": "{\"clientWidth\":375,\"scrollWidth\":375,\"bodyScrollWidth\":375}"
+    }
+  ]
+}

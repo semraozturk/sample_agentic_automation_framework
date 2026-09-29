@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Issue — Paper Trail</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Paper Trail</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="https://github.com/semraozturk/sample_agentic_automation_framework/issues">GitHub Issues</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <p class="muted">
+      <a href="log.html" data-testid="link-back-to-log">← Back to log</a>
+    </p>
+
+    <h1 data-testid="issue-title">Leak under bathroom sink</h1>
+    <p class="lede">
+      Bathroom · reported 1 September 2026 at 14:22
+      <span class="status reported" data-testid="issue-status">Reported</span>
+    </p>
+
+    <section class="card" data-testid="issue-history">
+      <h2>History</h2>
+
+      <article class="entry is-open" data-testid="issue-entry-report">
+        <p class="entry-when">2026-09-01 · 14:22 · Tenant</p>
+        <h3 class="entry-title">Issue reported</h3>
+        <p class="entry-body">
+          Water pooling under the basin. Started yesterday evening. I have put a
+          towel down but it keeps coming back after running the tap.
+        </p>
+      </article>
+
+      <article class="entry" data-testid="issue-entry-started">
+        <p class="entry-when">Started · 31 August 2026</p>
+        <h3 class="entry-title">Problem began</h3>
+        <p class="entry-body">
+          Tenant recorded that the leak started the evening before the report.
+        </p>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>Report a new issue</h2>
+      <p id="issue-error" class="form-error" role="alert" hidden></p>
+
+      <form id="issue-form" novalidate data-testid="issue-report-form">
+        <label for="issue-description">What is the problem?</label>
+        <textarea id="issue-description" name="description" required
+          placeholder="Describe what you can see or hear."></textarea>
+
+        <label for="issue-room">Which room?</label>
+        <select id="issue-room" name="room" required>
+          <option value="">Choose…</option>
+          <option value="kitchen">Kitchen</option>
+          <option value="bathroom">Bathroom</option>
+          <option value="bedroom">Bedroom</option>
+          <option value="living-room">Living room</option>
+          <option value="other">Other / whole home</option>
+        </select>
+
+        <label for="issue-started">When did it start? (optional)</label>
+        <input id="issue-started" name="started" type="date" />
+        <p class="field-hint">
+          Separate from the date you report it — useful when the problem began
+          days or weeks ago.
+        </p>
+
+        <button class="button" type="submit" data-testid="issue-submit">
+          Report issue
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Paper Trail</p>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/guard.js"></script>
+  <script src="js/issue.js"></script>
+</body>
+
+</html>

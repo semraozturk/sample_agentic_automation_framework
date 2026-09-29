@@ -1,0 +1,27 @@
+name: "Quality run (manual)"
+description: "Run Playwright, triage failures, self-heal test bugs, and execute the quality loop. Manual or webhook trigger."
+workflow:
+  triggers:
+    - webhook: {}
+  actions: []
+  prompts:
+    - |-
+      You are running the Paper Trail quality automation pipeline.
+
+      0. Cloud bootstrap: run `npm --prefix e2e install` then `npx --prefix e2e playwright install chromium` before the first Playwright run in this environment.
+      1. Read `.cursor/skills/quality-run/SKILL.md` and follow it with `--auto`.
+      2. Run: `node scripts/quality-run.mjs --all --auto` (or pass user-provided scope flags).
+      3. Run: `node scripts/quality-run.mjs --triage .quality/runs/<runId>` for the run directory from the manifest.
+      4. Delegate ReportAnalyzer sub-agent to refine `triage.json` using test-cases.md and issue ACs.
+      5. For each `test-bug` with `selfHealEligible: true`, delegate SelfHealer per `.cursor/skills/test-heal/SKILL.md` (max 2 attempts per TC). Re-run affected specs. When heal passes, run `node scripts/self-heal-pr.mjs --run-id <runId>`; if `heal-pr.json` has no URL, call `open_git_pr` with branch/title/body from that file.
+      6. Delegate QualityLoop sub-agent: `/run-automation` then `/test-it` for each story in scope.
+      7. Write `.quality/runs/<runId>/quality-summary.md` from the template.
+      8. Reply with: exit code, HTML report path, triage table, heal summary, self-heal PR link, loop verdicts.
+      9. Remind the user: review and merge the self-heal PR manually.
+  model: ""
+  agentOptions:
+    skipInstall: false
+  memoryEnabled: true
+  gitConfig:
+    repo: "semraozturk/sample_agentic_automation_framework"
+    branch: "main"

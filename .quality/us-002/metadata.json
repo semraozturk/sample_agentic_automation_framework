@@ -1,0 +1,28 @@
+{
+  "executionId": "exec-2026-09-03T141020Z",
+  "issueNumber": "US-002",
+  "slug": "us-002",
+  "startTime": "2026-09-03T14:10:08Z",
+  "endTime": "2026-09-03T14:10:20Z",
+  "status": "Complete",
+  "executor": "local",
+  "branch": "main",
+  "environment": {
+    "api": "n/a",
+    "playwrightBrowsers": "ready",
+    "ghCLI": "not available",
+    "staticServer": "http://localhost:3000"
+  },
+  "summary": {
+    "total": 4,
+    "executed": 4,
+    "pass": 4,
+    "fail": 0,
+    "blocked": 0,
+    "skip": 0
+  },
+  "githubIssues": {
+    "method": "skipped — no product failures",
+    "created": []
+  }
+}

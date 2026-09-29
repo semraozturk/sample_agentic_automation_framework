@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tenancy log — Paper Trail</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Paper Trail</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="https://github.com/semraozturk/sample_agentic_automation_framework/issues">GitHub Issues</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1 id="tenancy-heading" data-testid="tenancy-heading">Tenancy log</h1>
+
+    <section class="card quiet" data-testid="tenancy-summary" aria-label="Tenancy summary"></section>
+
+    <p id="delivery-note" class="form-error" data-testid="delivery-note" hidden></p>
+
+    <section class="card quiet" data-testid="log-empty-state">
+      <h2>No condition report yet</h2>
+      <p>
+        The first thing to record is how the home looked when you moved in —
+        room by room, with photos, in your first week.
+      </p>
+      <div class="actions">
+        <a class="button" href="condition.html" data-testid="link-condition-report">
+          Record move-in condition
+        </a>
+      </div>
+    </section>
+
+    <div class="actions">
+      <a class="button secondary" href="issue.html" data-testid="link-report-issue">
+        Report an issue
+      </a>
+      <a class="button secondary" href="pack.html" data-testid="link-move-out-pack">
+        View move-out pack
+      </a>
+    </div>
+
+    <h2>Log</h2>
+    <div data-testid="log-entries"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Paper Trail</p>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/log.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Start a record — Paper Trail</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Paper Trail</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="https://github.com/semraozturk/sample_agentic_automation_framework/issues">GitHub Issues</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>Start a record</h1>
+    <p class="lede">
+      Attach later entries to one tenancy: the address, when you moved in, and
+      the deposit if you know it.
+    </p>
+
+    <p id="form-error" class="form-error" role="alert" hidden></p>
+
+    <form id="start-form" class="card" novalidate>
+      <label for="address">Address</label>
+      <input id="address" name="address" type="text" autocomplete="street-address" data-testid="field-address" />
+
+      <label for="move-in">Move-in date</label>
+      <input id="move-in" name="move-in" type="date" data-testid="field-move-in" />
+
+      <label for="deposit">Deposit amount</label>
+      <input id="deposit" name="deposit" type="number" min="0" step="0.01" data-testid="field-deposit" />
+      <p class="field-hint">Optional. Use the amount in pounds, for example 850 or 850.50.</p>
+
+      <label for="landlord">Landlord or agent contact</label>
+      <input id="landlord" name="landlord" type="email" autocomplete="email" placeholder="name@agency.example"
+        data-testid="field-landlord" />
+      <p class="field-hint">Optional for now. Needed before reports can be delivered.</p>
+
+      <button class="button" type="submit" data-testid="submit-start">
+        Start this record
+      </button>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <p>Paper Trail</p>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/start.js"></script>
+</body>
+
+</html>

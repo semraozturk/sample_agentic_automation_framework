@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Condition report — Paper Trail</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Paper Trail</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="https://github.com/semraozturk/sample_agentic_automation_framework/issues">GitHub Issues</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <h1>Move-in condition report</h1>
+    <p class="lede">
+      Record each room in the first week you move in. This is the five minutes
+      that saves the argument two years later.
+    </p>
+
+    <p class="muted" data-testid="condition-progress">
+      <strong>4 rooms still unrecorded.</strong>
+    </p>
+
+    <form class="card" method="get" action="condition.html" data-testid="condition-form">
+      <section class="card quiet" data-testid="room-kitchen">
+        <h2>Kitchen</h2>
+
+        <label for="kitchen-condition">Condition</label>
+        <select id="kitchen-condition" name="kitchen-condition">
+          <option value="">Choose…</option>
+          <option value="good">Good</option>
+          <option value="fair">Fair</option>
+          <option value="poor">Poor</option>
+          <option value="na">Not applicable</option>
+        </select>
+
+        <label for="kitchen-notes">Notes</label>
+        <textarea id="kitchen-notes" name="kitchen-notes"
+          placeholder="Scratches on worktop, appliance marks, etc."></textarea>
+
+        <label for="kitchen-photos">Photos</label>
+        <input id="kitchen-photos" name="kitchen-photos" type="file" accept="image/*" multiple />
+        <p class="field-hint">UI only in Stage A — nothing is uploaded yet.</p>
+      </section>
+
+      <section class="card quiet" data-testid="room-bathroom">
+        <h2>Bathroom</h2>
+
+        <label for="bathroom-condition">Condition</label>
+        <select id="bathroom-condition" name="bathroom-condition">
+          <option value="">Choose…</option>
+          <option value="good">Good</option>
+          <option value="fair">Fair</option>
+          <option value="poor">Poor</option>
+          <option value="na">Not applicable</option>
+        </select>
+
+        <label for="bathroom-notes">Notes</label>
+        <textarea id="bathroom-notes" name="bathroom-notes"
+          placeholder="Grout colour, sealant around bath, etc."></textarea>
+
+        <label for="bathroom-photos">Photos</label>
+        <input id="bathroom-photos" name="bathroom-photos" type="file" accept="image/*" multiple />
+        <p class="field-hint">UI only in Stage A — nothing is uploaded yet.</p>
+      </section>
+
+      <section class="card quiet" data-testid="room-bedroom">
+        <h2>Bedroom</h2>
+
+        <label for="bedroom-condition">Condition</label>
+        <select id="bedroom-condition" name="bedroom-condition">
+          <option value="">Choose…</option>
+          <option value="good">Good</option>
+          <option value="fair">Fair</option>
+          <option value="poor">Poor</option>
+          <option value="na">Not applicable</option>
+        </select>
+
+        <label for="bedroom-notes">Notes</label>
+        <textarea id="bedroom-notes" name="bedroom-notes" placeholder="Carpet wear, wall marks, etc."></textarea>
+
+        <label for="bedroom-photos">Photos</label>
+        <input id="bedroom-photos" name="bedroom-photos" type="file" accept="image/*" multiple />
+        <p class="field-hint">UI only in Stage A — nothing is uploaded yet.</p>
+      </section>
+
+      <section class="card quiet" data-testid="room-living-room">
+        <h2>Living room</h2>
+
+        <label for="living-room-condition">Condition</label>
+        <select id="living-room-condition" name="living-room-condition">
+          <option value="">Choose…</option>
+          <option value="good">Good</option>
+          <option value="fair">Fair</option>
+          <option value="poor">Poor</option>
+          <option value="na">Not applicable</option>
+        </select>
+
+        <label for="living-room-notes">Notes</label>
+        <textarea id="living-room-notes" name="living-room-notes"
+          placeholder="Flooring, windows, radiator covers, etc."></textarea>
+
+        <label for="living-room-photos">Photos</label>
+        <input id="living-room-photos" name="living-room-photos" type="file" accept="image/*" multiple />
+        <p class="field-hint">UI only in Stage A — nothing is uploaded yet.</p>
+      </section>
+
+      <button class="button" type="submit" data-testid="condition-submit">
+        Seal condition report
+      </button>
+    </form>
+
+    <p class="muted">
+      <a href="log.html" data-testid="link-back-to-log">← Back to log</a>
+    </p>
+  </main>
+
+  <footer class="site-footer">
+    <p>Paper Trail</p>
+  </footer>
+</body>
+
+</html>

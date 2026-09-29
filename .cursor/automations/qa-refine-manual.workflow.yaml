@@ -1,0 +1,39 @@
+name: "QA refine (manual)"
+description: "Run qa-refine on selected GitHub user-story issues and post one QA readiness plan comment per story. Manual or webhook trigger."
+workflow:
+  triggers:
+    - webhook: {}
+  actions: []
+  prompts:
+    - |-
+      You are running the Paper Trail QA refinement stage (stage 0 of the quality loop).
+
+      Read `.cursor/skills/qa-refine/SKILL.md` and follow it exactly.
+
+      ## Resolve which issues to analyze
+      Merge inputs from all sources, then deduplicate by GitHub issue number:
+      1. **Run Test → Context (optional):** issue numbers or URLs (e.g. `/qa-refine 27 28`, `27`, or full GitHub issue URLs).
+      2. **Run Test → JSON Payload (optional)** or webhook POST body: `issueNumbers` (array of integers) and/or `issueUrls` (array of strings).
+
+      Reject closed issues unless explicitly named. Print the resolved issue list and story count before analyzing.
+
+      ## Execution
+      - Delegate StoryReader, CodeScout, and GapAnalyst sub-agents per the skill (max 4 stories in parallel).
+      - Parent merges outputs using `.cursor/skills/qa-refine/qa-plan-template.md` and posts via `node scripts/qa-plan-post.mjs --issue <n> --body-file <path>`.
+      - Do not edit issue bodies, titles, or labels. Do not write Playwright specs, product code, or committed `.quality/<slug>/` artifacts.
+
+      ## dry-run
+      Post plans unless the run message or webhook sets dry-run (`--dry-run`, `"dryRun": true`). When dry-run, render plans in the run output only; do not post comments.
+
+      ## Finish
+      After processing, print the rollup table and blocking questions grouped by role from the skill. Call out stories not ready for sprint.
+
+      Webhook payload example:
+      `{ "issueNumbers": [27, 28], "issueUrls": [], "dryRun": false }`
+  model: ""
+  agentOptions:
+    skipInstall: false
+  memoryEnabled: true
+  gitConfig:
+    repo: "semraozturk/sample_agentic_automation_framework"
+    branch: "main"

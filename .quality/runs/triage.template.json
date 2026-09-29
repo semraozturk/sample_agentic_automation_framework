@@ -1,0 +1,80 @@
+{
+  "$schema": "Quality run triage output — one row per failed or flaky test",
+  "runId": "run-YYYY-MM-DDTHH-MM-SSZ",
+  "generatedAt": "ISO-8601 timestamp",
+  "classifications": [
+    "product-bug",
+    "test-bug",
+    "data-bug",
+    "blocked",
+    "needs-review"
+  ],
+  "failures": [
+    {
+      "testTitle": "TC-01: US-001-AC-1 Home shows problem...",
+      "tcId": "TC-01",
+      "storySlug": "us-001",
+      "specFile": "e2e/src/specs/home/us-001.spec.ts",
+      "classification": "product-bug",
+      "confidence": "high",
+      "reason": "Assertion on visible copy mismatches unchanged AC in test-cases.md",
+      "evidence": {
+        "errorMessage": "expect(received)...",
+        "stdoutExcerpt": "",
+        "screenshot": ".quality/runs/<runId>/playwright-report/data/...",
+        "trace": null,
+        "testCasesRow": ".quality/us-001/test-cases.md#TC-01"
+      },
+      "recommendedAction": "Write issue-handoff.md; do not edit e2e specs",
+      "selfHealEligible": false
+    },
+    {
+      "testTitle": "TC-02: example locator drift",
+      "tcId": "TC-02",
+      "storySlug": "us-002",
+      "specFile": "e2e/src/specs/home/us-002.spec.ts",
+      "classification": "test-bug",
+      "confidence": "medium",
+      "reason": "Locator not found; product HTML unchanged per git diff",
+      "evidence": {
+        "errorMessage": "Timeout waiting for getByTestId(...)",
+        "stdoutExcerpt": "",
+        "screenshot": null,
+        "trace": null,
+        "testCasesRow": ".quality/us-002/test-cases.md#TC-02"
+      },
+      "recommendedAction": "Invoke /test-heal (max 2 attempts)",
+      "selfHealEligible": true
+    },
+    {
+      "testTitle": "TC-01: example exhausted one-time-use pool",
+      "tcId": "TC-01",
+      "storySlug": "us-030",
+      "specFile": "e2e/src/specs/invite/us-030.spec.ts",
+      "classification": "data-bug",
+      "confidence": "high",
+      "reason": "Test data was missing, invalid, or exhausted — not a product or spec fault",
+      "evidence": {
+        "errorMessage": "test data unavailable: DS-us-030-01 is not in the reservation",
+        "stdoutExcerpt": "",
+        "screenshot": null,
+        "trace": null,
+        "testCasesRow": ".quality/us-030/test-cases.md#TC-01",
+        "dataReadiness": ".quality/runs/<runId>/data-readiness.md"
+      },
+      "recommendedAction": "Run node scripts/data-check.mjs --story us-030 --reserve; refill pools with --top-up",
+      "selfHealEligible": false
+    }
+  ],
+  "summary": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "productBugs": 0,
+    "testBugs": 0,
+    "dataBugs": 0,
+    "blocked": 0,
+    "needsReview": 0
+  }
+}

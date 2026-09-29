@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Move-out pack — Paper Trail</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body class="pack">
+  <header class="site-header">
+    <a class="brand" href="index.html">Paper Trail</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="https://github.com/semraozturk/sample_agentic_automation_framework/issues">GitHub Issues</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <div class="pack-sheet" data-testid="pack-sheet">
+      <h1>Move-out pack</h1>
+      <p class="muted" data-testid="pack-generated">
+        Generated <span data-testid="pack-generated-date">—</span> ·
+        <span data-testid="pack-address">—</span>
+      </p>
+
+      <section data-testid="pack-summary">
+        <h2>Summary</h2>
+        <dl>
+          <dt>Tenancy</dt>
+          <dd data-testid="pack-address-summary">—</dd>
+          <dt>Deposit</dt>
+          <dd data-testid="pack-deposit">—</dd>
+          <dt>Log entries</dt>
+          <dd data-testid="pack-entry-count">0</dd>
+        </dl>
+        <p class="muted">
+          This export contains every entry in order. It cannot be edited to
+          suit whoever sends it.
+        </p>
+      </section>
+
+      <section>
+        <h2>Full log</h2>
+        <div data-testid="pack-entries"></div>
+      </section>
+
+      <p class="print-hint" data-testid="print-hint">
+        Use your browser’s print command to save this pack as a PDF.
+      </p>
+
+      <a class="back-link" href="log.html" data-testid="link-back-to-log">
+        ← Back to log
+      </a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>Paper Trail</p>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/guard.js"></script>
+  <script src="js/pack.js"></script>
+</body>
+
+</html>

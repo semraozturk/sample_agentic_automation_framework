@@ -1,0 +1,206 @@
+#!/usr/bin/env node
+/**
+ * Generate docs/traceability-matrix.md from issue-mapping, test-cases.md, and Playwright specs.
+ * Usage: node scripts/traceability-matrix.mjs
+ */
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const ROOT = path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
+const QUALITY_DIR = path.join(ROOT, ".quality");
+const SPECS_ROOT = path.join(ROOT, "e2e", "src", "specs");
+const OUT_PATH = path.join(ROOT, "docs", "traceability-matrix.md");
+const ISSUE_MAPPING_PATH = path.join(ROOT, "scripts", "issue-mapping.json");
+
+const TC_TITLE_RE = /test\s*\(\s*["'`](TC-\d+):\s*([^"'`]+)["'`]/g;
+const AC_IN_TITLE_RE = /(US-\d+-AC-\d+)/;
+
+function loadIssueMapping() {
+  return JSON.parse(fs.readFileSync(ISSUE_MAPPING_PATH, "utf8"));
+}
+
+function walkSpecs(dir, acc = []) {
+  if (!fs.existsSync(dir)) return acc;
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) walkSpecs(full, acc);
+    else if (entry.name.endsWith(".spec.ts")) acc.push(full);
+  }
+  return acc;
+}
+
+function parseSpecTests(specPath) {
+  const content = fs.readFileSync(specPath, "utf8");
+  const rel = path.relative(ROOT, specPath).replace(/\\/g, "/");
+  const slugMatch = path.basename(specPath, ".spec.ts").match(/^(us-\d+)$/i);
+  const slug = slugMatch ? slugMatch[1].toLowerCase() : null;
+  const tests = [];
+  TC_TITLE_RE.lastIndex = 0;
+  let m;
+  while ((m = TC_TITLE_RE.exec(content)) !== null) {
+    const tcId = m[1];
+    const titleRest = m[2].trim();
+    const acMatch = titleRest.match(AC_IN_TITLE_RE);
+    tests.push({
+      tcId,
+      acId: acMatch ? acMatch[1] : "—",
+      title: `${tcId}: ${titleRest}`,
+      specFile: rel,
+      slug,
+    });
+  }
+  return tests;
+}
+
+function parseTestCasesMd(filePath) {
+  const content = fs.readFileSync(filePath, "utf8");
+  const slug = path.basename(path.dirname(filePath));
+  const storyMatch = content.match(/\bStory:\s*(US-\d+)/i);
+  const storyId = storyMatch
+    ? storyMatch[1].toUpperCase()
+    : slug.replace(/^us-/, "US-").toUpperCase();
+
+  const acTcRows = [];
+  const acTableRe = /\|\s*(US-\d+-AC-\d+)\s*\|\s*SA-\d+\s*\|\s*(TC-\d+)\s*\|/g;
+  let am;
+  while ((am = acTableRe.exec(content)) !== null) {
+    acTcRows.push({ acId: am[1], tcId: am[2] });
+  }
+
+  const tcAutomation = new Map();
+  const tcRowRe =
+    /\|\s*(TC-\d+)\s*\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|[^|]*\|\s*([^|]+?)\s*\|/g;
+  let tm;
+  while ((tm = tcRowRe.exec(content)) !== null) {
+    const automation = tm[2].trim().toLowerCase();
+    tcAutomation.set(tm[1], automation);
+  }
+
+  return { slug, storyId, acTcRows, tcAutomation };
+}
+
+function statusForTc(specTest, automationLabel) {
+  if (specTest) return "automated";
+  if (automationLabel && automationLabel.includes("playwright")) {
+    return "gap (playwright label, no spec)";
+  }
+  if (automationLabel && automationLabel.includes("manual")) return "manual-only";
+  return "not automated";
+}
+
+function buildMarkdown() {
+  const mapping = loadIssueMapping();
+  const specTests = walkSpecs(SPECS_ROOT).flatMap(parseSpecTests);
+  const specBySlug = new Map();
+  for (const t of specTests) {
+    if (t.slug) {
+      if (!specBySlug.has(t.slug)) specBySlug.set(t.slug, []);
+      specBySlug.get(t.slug).push(t);
+    }
+  }
+
+  const slugs = fs
+    .readdirSync(QUALITY_DIR, { withFileTypes: true })
+    .filter((d) => d.isDirectory() && /^us-\d+$/i.test(d.name))
+    .map((d) => d.name.toLowerCase())
+    .sort();
+
+  const rows = [];
+  for (const slug of slugs) {
+    const tcPath = path.join(QUALITY_DIR, slug, "test-cases.md");
+    if (!fs.existsSync(tcPath)) continue;
+    const parsed = parseTestCasesMd(tcPath);
+    const storyId = parsed.storyId;
+    const issueRow = mapping[storyId];
+    const issueNum = issueRow?.issue ?? "—";
+    const issueUrl = issueRow?.url ?? "—";
+
+    const acByTc = new Map(parsed.acTcRows.map((r) => [r.tcId, r.acId]));
+    const tcIds = new Set([
+      ...parsed.acTcRows.map((r) => r.tcId),
+      ...parsed.tcAutomation.keys(),
+      ...(specBySlug.get(slug) ?? []).map((t) => t.tcId),
+    ]);
+
+    for (const tcId of [...tcIds].sort((a, b) => {
+      const na = Number(a.replace("TC-", ""));
+      const nb = Number(b.replace("TC-", ""));
+      return na - nb;
+    })) {
+      const acId = acByTc.get(tcId) ?? "—";
+      const automationLabel = parsed.tcAutomation.get(tcId) ?? "";
+      const specTest = (specBySlug.get(slug) ?? []).find((t) => t.tcId === tcId);
+      const status = statusForTc(specTest, automationLabel);
+      rows.push({
+        storyId,
+        slug,
+        issueNum,
+        issueUrl,
+        acId,
+        tcId,
+        automatable: automationLabel || "—",
+        specTitle: specTest?.title ?? "—",
+        specFile: specTest?.specFile ?? "—",
+        status,
+      });
+    }
+  }
+
+  const lines = [
+    "# Traceability matrix",
+    "",
+    "Generated by `npm run docs:traceability`. Do not edit by hand — regenerate after TC or spec changes.",
+    "",
+    `Last generated: ${new Date().toISOString().slice(0, 10)}`,
+    "",
+    "| Story | Slug | GitHub issue | AC | TC | Automation label | Playwright test | Spec file | Status |",
+    "|-------|------|--------------|----|----|------------------|-----------------|-----------|--------|",
+  ];
+
+  for (const r of rows) {
+    const issueCell =
+      r.issueNum === "—" ? "—" : `[#${r.issueNum}](${r.issueUrl})`;
+    lines.push(
+      `| ${r.storyId} | ${r.slug} | ${issueCell} | ${r.acId} | ${r.tcId} | ${r.automatable} | ${r.specTitle.replace(/\|/g, "\\|")} | ${r.specFile} | ${r.status} |`
+    );
+  }
+
+  lines.push("");
+  lines.push("## Coverage summary");
+  lines.push("");
+  const automated = rows.filter((r) => r.status === "automated").length;
+  lines.push(`- Rows: ${rows.length}`);
+  lines.push(`- Automated (spec present): ${automated}`);
+  lines.push(`- Stories with committed specs: us-001, us-002 ([e2e/src/specs/home/](../e2e/src/specs/home/))`);
+  lines.push("");
+
+  return { content: lines.join("\n") + "\n", rowCount: rows.length };
+}
+
+function main() {
+  const checkOnly = process.argv.includes("--check");
+  const { content, rowCount } = buildMarkdown();
+
+  if (checkOnly) {
+    if (!fs.existsSync(OUT_PATH)) {
+      console.error("Missing docs/traceability-matrix.md — run npm run docs:traceability");
+      process.exit(1);
+    }
+    const existing = fs.readFileSync(OUT_PATH, "utf8");
+    const normalize = (s) =>
+      s.replace(/^Last generated:.*\n/m, "Last generated: <date>\n");
+    if (normalize(existing) !== normalize(content)) {
+      console.error("docs/traceability-matrix.md is out of date — run npm run docs:traceability");
+      process.exit(1);
+    }
+    console.log(`ok  traceability matrix (${rowCount} rows)`);
+    return;
+  }
+
+  fs.mkdirSync(path.dirname(OUT_PATH), { recursive: true });
+  fs.writeFileSync(OUT_PATH, content);
+  console.log(`Wrote ${path.relative(ROOT, OUT_PATH)} (${rowCount} rows)`);
+}
+
+main();

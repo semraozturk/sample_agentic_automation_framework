@@ -1,0 +1,239 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://paper-trail.local/schemas/test-data-manifest-v1.json",
+  "title": "Test data manifest (v1)",
+  "description": "Declarative, framework-neutral description of the data one story's test cases need. Read by scripts/data-check.mjs. See docs/test-data-contract.md.",
+  "type": "object",
+  "required": ["version", "story", "datasets"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "version": { "const": 1 },
+    "story": {
+      "type": "string",
+      "description": "Story slug, matching the .quality/<slug>/ folder.",
+      "pattern": "^[a-z0-9][a-z0-9-]*$"
+    },
+    "datasets": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/dataset" }
+    }
+  },
+  "$defs": {
+    "dataset": {
+      "type": "object",
+      "required": ["id", "usedBy", "entity", "lifecycle", "source", "fields"],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Stable dataset id. Never renumber or reuse — same rule as story and TC ids.",
+          "pattern": "^DS-[a-z0-9-]+-\\d{2}$"
+        },
+        "usedBy": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "pattern": "^TC-\\d{2}$" },
+          "description": "TC ids in .quality/<slug>/test-cases.md that consume this dataset."
+        },
+        "traces": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^US-\\d{3}-AC-\\d+$" }
+        },
+        "entity": {
+          "type": "string",
+          "description": "Logical thing the records represent (tenancy, inviteToken, viewport).",
+          "minLength": 1
+        },
+        "lifecycle": {
+          "enum": ["reusable", "mutating", "one-time-use"],
+          "description": "reusable: unchanged by the test. mutating: changed, so teardown is required. one-time-use: consumed, so it must be leased."
+        },
+        "source": { "$ref": "#/$defs/source" },
+        "fields": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": { "$ref": "#/$defs/field" },
+          "description": "Declared shape. Every record from every source is checked against this."
+        },
+        "records": {
+          "type": "array",
+          "items": { "type": "object" },
+          "description": "Inline records. Required for source.kind static, forbidden otherwise."
+        },
+        "demandPerRun": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Records one test run consumes. Required for one-time-use."
+        },
+        "minAvailable": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Low-watermark for a one-time-use pool. Below this the dataset is DEGRADED, not EXHAUSTED — the warning arrives before the red run."
+        },
+        "staleAfterDays": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Records older than this (by createdAt) fail DC-04 freshness."
+        },
+        "dependsOn": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^DS-[a-z0-9-]+-\\d{2}$" },
+          "description": "Parent dataset ids that must resolve first (an entry needs its tenancy)."
+        },
+        "teardown": {
+          "type": "string",
+          "description": "How the test returns the world to its prior state. Required for lifecycle mutating."
+        },
+        "notes": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "source": { "properties": { "kind": { "const": "static" } } } } },
+          "then": { "required": ["records"] },
+          "else": { "not": { "required": ["records"] } }
+        },
+        {
+          "if": { "properties": { "lifecycle": { "const": "one-time-use" } } },
+          "then": { "required": ["demandPerRun"] }
+        },
+        {
+          "if": { "properties": { "lifecycle": { "const": "mutating" } } },
+          "then": { "required": ["teardown"] }
+        }
+      ]
+    },
+    "source": {
+      "type": "object",
+      "required": ["kind"],
+      "properties": {
+        "kind": { "enum": ["static", "generated", "api", "db", "env"] }
+      },
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": { "kind": { "const": "static" } }
+        },
+        {
+          "additionalProperties": false,
+          "required": ["generator", "count"],
+          "properties": {
+            "kind": { "const": "generated" },
+            "generator": {
+              "type": "string",
+              "description": "Generator name registered in scripts/data/generators.mjs."
+            },
+            "count": { "type": "integer", "minimum": 1 }
+          }
+        },
+        {
+          "additionalProperties": false,
+          "required": ["baseUrl", "path"],
+          "properties": {
+            "kind": { "const": "api" },
+            "baseUrl": {
+              "type": "string",
+              "description": "Literal URL or env:NAME indirection."
+            },
+            "path": { "type": "string" },
+            "method": { "enum": ["GET", "POST"] },
+            "body": { "type": "object" },
+            "collection": {
+              "type": "string",
+              "description": "Property of the JSON response holding the array of records."
+            }
+          }
+        },
+        {
+          "additionalProperties": false,
+          "required": ["connection", "table", "key"],
+          "properties": {
+            "kind": { "const": "db" },
+            "connection": {
+              "type": "string",
+              "description": "Connection name from data/connections.json."
+            },
+            "table": { "type": "string", "pattern": "^[A-Za-z_][A-Za-z0-9_]*$" },
+            "key": {
+              "type": "string",
+              "description": "Column uniquely identifying a record. The lease ledger keys on it."
+            },
+            "where": {
+              "type": "string",
+              "description": "SQL predicate limiting eligible records. No parameters, no semicolons."
+            }
+          }
+        },
+        {
+          "additionalProperties": false,
+          "required": ["vars"],
+          "properties": {
+            "kind": { "const": "env" },
+            "vars": {
+              "type": "array",
+              "minItems": 1,
+              "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" }
+            }
+          }
+        }
+      ]
+    },
+    "field": {
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": [
+            "string",
+            "number",
+            "integer",
+            "boolean",
+            "date",
+            "datetime",
+            "email",
+            "uuid",
+            "currency",
+            "enum"
+          ]
+        },
+        "required": { "type": "boolean", "default": false },
+        "unique": { "type": "boolean", "default": false },
+        "nullable": { "type": "boolean", "default": false },
+        "minLength": { "type": "integer", "minimum": 0 },
+        "maxLength": { "type": "integer", "minimum": 1 },
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "pattern": { "type": "string" },
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "description": "Allowed values for type enum."
+        },
+        "notBefore": {
+          "type": "string",
+          "description": "ISO date or the keyword today."
+        },
+        "notAfter": {
+          "type": "string",
+          "description": "ISO date or the keyword today."
+        },
+        "future": {
+          "type": "boolean",
+          "description": "Value must be later than now. Used for expiry columns."
+        },
+        "secret": {
+          "type": "boolean",
+          "description": "Value is a credential: must come from env, and is redacted in reports."
+        }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "type": { "const": "enum" } } },
+          "then": { "required": ["values"] }
+        }
+      ]
+    }
+  }
+}

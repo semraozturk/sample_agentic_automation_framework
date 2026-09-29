@@ -1,0 +1,16 @@
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> test
+> playwright test src/specs/home/us-002.spec.ts
+
+
+Running 4 tests using 1 worker
+
+(node:52056) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] ΓÇ║ src\specs\home\us-002.spec.ts:11:7 ΓÇ║ US-002 Start form captures the tenancy ΓÇ║ TC-01: US-002-AC-1 Start form shows address, move-in, and deposit fields (2.1s)
+  ok 2 [chromium] ΓÇ║ src\specs\home\us-002.spec.ts:19:7 ΓÇ║ US-002 Start form captures the tenancy ΓÇ║ TC-02: US-002-AC-2 Empty required fields show one error and stay on start (836ms)
+  ok 3 [chromium] ΓÇ║ src\specs\home\us-002.spec.ts:30:7 ΓÇ║ US-002 Start form captures the tenancy ΓÇ║ TC-03: US-002-AC-3 Valid submit opens log with address as heading (846ms)
+  ok 4 [chromium] ΓÇ║ src\specs\home\us-002.spec.ts:40:7 ΓÇ║ US-002 Start form captures the tenancy ΓÇ║ TC-04: US-002-AC-4 Tenancy summary is read-only on the log page (950ms)
+
+  4 passed (12.4s)

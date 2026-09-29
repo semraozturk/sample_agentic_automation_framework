@@ -1,0 +1,21 @@
+{
+  "$schema": "./manifest.schema.json",
+  "version": 1,
+  "story": "us-001",
+  "datasets": [
+    {
+      "id": "DS-us-001-01",
+      "usedBy": ["TC-04"],
+      "traces": ["US-001-AC-4"],
+      "entity": "viewport",
+      "lifecycle": "reusable",
+      "source": { "kind": "static" },
+      "fields": {
+        "width": { "type": "integer", "required": true, "min": 320, "max": 480 },
+        "height": { "type": "integer", "required": true, "min": 480 }
+      },
+      "records": [{ "width": 375, "height": 667 }],
+      "notes": "Phone width from TC-04. TC-01 to TC-03 declare Test Data 'none' and need no dataset."
+    }
+  ]
+}

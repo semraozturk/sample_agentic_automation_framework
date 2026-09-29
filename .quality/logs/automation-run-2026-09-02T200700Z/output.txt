@@ -1,0 +1,22 @@
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> test
+> playwright test
+
+
+Running 8 tests using 2 workers
+
+(node:9864) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:39692) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ok 1 [chromium] ΓÇ║ src\specs\home\us-002.spec.ts:11:7 ΓÇ║ US-002 Start form captures the tenancy ΓÇ║ TC-01: US-002-AC-1 Start form shows address, move-in, and deposit fields (2.1s)
+  ok 2 [chromium] ΓÇ║ src\specs\home\us-001.spec.ts:8:7 ΓÇ║ US-001 Home explains the product and roles ΓÇ║ TC-01: US-001-AC-1 Home shows problem, numbered how-it-works, and four roles (2.1s)
+  ok 3 [chromium] ΓÇ║ src\specs\home\us-002.spec.ts:19:7 ΓÇ║ US-002 Start form captures the tenancy ΓÇ║ TC-02: US-002-AC-2 Empty required fields show one error and stay on start (858ms)
+  ok 4 [chromium] ΓÇ║ src\specs\home\us-001.spec.ts:21:7 ΓÇ║ US-001 Home explains the product and roles ΓÇ║ TC-02: US-001-AC-2 Limits section says this is a record, not legal advice or a verdict (858ms)
+  ok 6 [chromium] ΓÇ║ src\specs\home\us-001.spec.ts:36:7 ΓÇ║ US-001 Home explains the product and roles ΓÇ║ TC-03: US-001-AC-3 Start a record opens start.html (1.2s)
+  ok 5 [chromium] ΓÇ║ src\specs\home\us-002.spec.ts:30:7 ΓÇ║ US-002 Start form captures the tenancy ΓÇ║ TC-03: US-002-AC-3 Valid submit opens log with address as heading (1.3s)
+  ok 7 [chromium] ΓÇ║ src\specs\home\us-001.spec.ts:48:9 ΓÇ║ US-001 Home explains the product and roles ΓÇ║ phone-width ΓÇ║ TC-04: US-001-AC-4 Phone-width home has no clip and no sideways scroll (1.2s)
+  ok 8 [chromium] ΓÇ║ src\specs\home\us-002.spec.ts:40:7 ΓÇ║ US-002 Start form captures the tenancy ΓÇ║ TC-04: US-002-AC-4 Tenancy summary is read-only on the log page (1.3s)
+
+  8 passed (6.9s)

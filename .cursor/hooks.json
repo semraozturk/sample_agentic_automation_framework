@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "hooks": {
+    "afterFileEdit": [
+      {
+        "command": "node .cursor/hooks/e2e-traceability-sync.js",
+        "timeout": 30
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": "node .cursor/hooks/e2e-shell-preflight.js",
+        "matcher": "quality-run\\.mjs|playwright test|npm.*--prefix e2e|test:e2e",
+        "timeout": 45
+      }
+    ],
+    "stop": [
+      {
+        "command": "node .cursor/hooks/e2e-stop-traceability.js",
+        "timeout": 20,
+        "loop_limit": 1
+      }
+    ]
+  }
+}

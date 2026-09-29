@@ -1,0 +1,29 @@
+{
+  "executionId": "exec-2026-09-02T173200Z",
+  "issueNumber": "US-014",
+  "slug": "us-014",
+  "startTime": "2026-09-02T17:25:00Z",
+  "endTime": "2026-09-02T17:32:00Z",
+  "status": "Complete",
+  "executor": "local",
+  "branch": "main",
+  "environment": {
+    "api": "n/a",
+    "playwrightBrowsers": "ready",
+    "ghCLI": "not available",
+    "staticServer": "http://localhost:3000 (Playwright webServer)"
+  },
+  "summary": {
+    "total": 5,
+    "executed": 5,
+    "pass": 4,
+    "fail": 0,
+    "expectedFail": 1,
+    "blocked": 0,
+    "skip": 0
+  },
+  "githubIssues": {
+    "method": "skipped — no unexpected product failures",
+    "created": []
+  }
+}

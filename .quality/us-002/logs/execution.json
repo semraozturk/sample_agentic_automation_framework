@@ -1,0 +1,24 @@
+{
+  "results": [
+    {
+      "id": "TC-01",
+      "status": "PASS",
+      "note": "address, move-in, deposit fields visible"
+    },
+    {
+      "id": "TC-02",
+      "status": "PASS",
+      "note": "alert=Enter your address and move-in date before starting this record.; no tenancy saved"
+    },
+    {
+      "id": "TC-03",
+      "status": "PASS",
+      "note": "url=http://localhost:3000/log; heading=42 Test Lane"
+    },
+    {
+      "id": "TC-04",
+      "status": "PASS",
+      "note": "controls=0; read-only copy present"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+name: "Data check (nightly sweep)"
+description: "Full test-data readiness sweep across every manifest. Catches expiring records and draining one-time-use pools before they block a run. Scheduled or webhook trigger."
+workflow:
+  triggers:
+    - cron:
+        expression: "0 5 * * *"
+    - webhook: {}
+  actions: []
+  prompts:
+    - |-
+      You are running the Paper Trail test-data readiness sweep.
+
+      Read `.cursor/skills/data-check/SKILL.md` and follow it. This is the proactive pass:
+      nothing is running the suite right now, so the goal is to find data that would break
+      tomorrow's runs while there is still time to fix it.
+
+      ## Execution
+      1. Build the sample database: `node data/seed.mjs --reset --verify --quiet`.
+      2. Full sweep: `node scripts/data-check.mjs --all --no-cache --run-id run-nightly-<UTC date>`.
+         Use `--no-cache` — a nightly run that reuses yesterday's cache proves nothing.
+      3. Delegate FindingsTriage to classify every finding as `manifest-bug`, `data-bug`,
+         `env-bug`, or `product-bug`.
+      4. Delegate Remediator for the bounded fixes only (`--top-up`, reseed, regenerate).
+         Max 2 rounds, then stop. Never widen a field constraint to make a check pass.
+      5. Re-run after any fix and record the new verdict.
+
+      ## Report
+      Reply with:
+      - Overall verdict and exit code
+      - The dataset table from `data-readiness.md` (id, lifecycle, source, available, verdict)
+      - Findings grouped by class, with the remediation applied or still needed
+      - Pools within 3 runs of exhaustion, even when the verdict is READY — that is the
+        early warning this sweep exists for
+      - Stories whose TCs declare Test Data with no dataset (DC-08)
+
+      ## Limits
+      - Do not edit `paper-trail/` product code or any spec.
+      - Do not open pull requests. Manifest edits are proposed in the reply for review.
+      - On a `product-bug` finding, stop and name it; do not relax the manifest.
+  model: ""
+  agentOptions:
+    skipInstall: false
+  memoryEnabled: true
+  gitConfig:
+    repo: "semraozturk/sample_agentic_automation_framework"
+    branch: "main"

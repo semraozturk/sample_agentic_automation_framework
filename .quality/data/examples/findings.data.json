@@ -1,0 +1,58 @@
+{
+  "$schema": "../manifest.schema.json",
+  "version": 1,
+  "story": "findings",
+  "datasets": [
+    {
+      "id": "DS-findings-01",
+      "usedBy": ["TC-99"],
+      "entity": "tenancy",
+      "lifecycle": "reusable",
+      "source": { "kind": "static" },
+      "fields": {
+        "address": { "type": "string", "required": true, "minLength": 5 },
+        "moveIn": { "type": "date", "required": true, "notAfter": "today" },
+        "deposit": { "type": "currency", "required": false, "min": 0 },
+        "reference": { "type": "uuid", "required": true, "unique": true }
+      },
+      "records": [
+        { "address": "", "moveIn": "2026-08-01", "deposit": "900", "reference": "11111111-1111-4111-a111-111111111111" },
+        { "address": "4 A", "moveIn": "not-a-date", "deposit": "-50", "reference": "11111111-1111-4111-a111-111111111111" },
+        { "address": "12 Valid Street", "moveIn": "2099-01-01", "deposit": "900", "reference": "nope", "extra": "undeclared" }
+      ],
+      "notes": "Every record breaks something on purpose: DC-02 required/type/minLength and undeclared field, DC-03 min and notAfter, DC-05 duplicate unique."
+    },
+    {
+      "id": "DS-findings-02",
+      "usedBy": ["TC-99"],
+      "entity": "session",
+      "lifecycle": "mutating",
+      "teardown": "nothing — which is the point",
+      "source": { "kind": "static" },
+      "fields": {
+        "apiKey": { "type": "string", "required": true }
+      },
+      "records": [{ "apiKey": "sk-live-not-a-real-key-0000" }],
+      "notes": "DC-09 mutating-on-static and DC-10 credential literal."
+    },
+    {
+      "id": "DS-findings-03",
+      "usedBy": ["TC-99"],
+      "entity": "orphan",
+      "lifecycle": "reusable",
+      "source": { "kind": "generated", "generator": "nope", "count": 2 },
+      "fields": { "title": { "type": "string", "required": true } },
+      "notes": "DC-01 unknown generator."
+    },
+    {
+      "id": "DS-findings-04",
+      "usedBy": ["TC-99"],
+      "entity": "child",
+      "lifecycle": "reusable",
+      "source": { "kind": "generated", "generator": "fields", "count": 1 },
+      "dependsOn": ["DS-findings-03", "DS-findings-99"],
+      "fields": { "title": { "type": "string", "required": true } },
+      "notes": "DC-07 unhealthy parent and missing parent."
+    }
+  ]
+}

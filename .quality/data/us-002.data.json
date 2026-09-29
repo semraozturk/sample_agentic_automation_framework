@@ -1,0 +1,51 @@
+{
+  "$schema": "./manifest.schema.json",
+  "version": 1,
+  "story": "us-002",
+  "datasets": [
+    {
+      "id": "DS-us-002-02",
+      "usedBy": ["TC-02"],
+      "traces": ["US-002-AC-2"],
+      "entity": "tenancy",
+      "lifecycle": "reusable",
+      "source": { "kind": "static" },
+      "fields": {
+        "address": { "type": "string", "required": false, "maxLength": 200 },
+        "moveIn": { "type": "date", "required": false }
+      },
+      "records": [{ "address": "", "moveIn": "" }],
+      "notes": "Negative path: both required product fields left empty, so the dataset itself declares them optional."
+    },
+    {
+      "id": "DS-us-002-03",
+      "usedBy": ["TC-03"],
+      "traces": ["US-002-AC-3"],
+      "entity": "tenancy",
+      "lifecycle": "reusable",
+      "source": { "kind": "static" },
+      "fields": {
+        "address": { "type": "string", "required": true, "minLength": 3, "maxLength": 200 },
+        "moveIn": { "type": "date", "required": true, "notAfter": "today" }
+      },
+      "records": [{ "address": "42 Test Lane", "moveIn": "2026-08-01" }]
+    },
+    {
+      "id": "DS-us-002-04",
+      "usedBy": ["TC-04"],
+      "traces": ["US-002-AC-4"],
+      "entity": "tenancy",
+      "lifecycle": "reusable",
+      "source": { "kind": "static" },
+      "fields": {
+        "address": { "type": "string", "required": true, "minLength": 3, "maxLength": 200 },
+        "moveIn": { "type": "date", "required": true, "notAfter": "today" },
+        "deposit": { "type": "currency", "required": false, "min": 0 }
+      },
+      "records": [
+        { "address": "99 Read Only Road", "moveIn": "2026-07-15", "deposit": "900" }
+      ],
+      "notes": "TC-01 declares Test Data 'none' and needs no dataset."
+    }
+  ]
+}

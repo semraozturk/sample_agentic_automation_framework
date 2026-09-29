@@ -1,0 +1,20 @@
+{
+  "name": "cursor-practice-internal",
+  "private": true,
+  "description": "Paper Trail — static product + Playwright E2E + AI-assisted quality loop",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "verify:prereqs": "node scripts/verify-automation-prereqs.mjs",
+    "data:check": "node scripts/data-check.mjs --all",
+    "data:seed": "node data/seed.mjs --reset",
+    "test:e2e": "npm --prefix e2e test",
+    "test:e2e:headed": "npm --prefix e2e run test:headed",
+    "quality:run": "node scripts/quality-run.mjs --all",
+    "quality:report": "npm --prefix e2e run report:open",
+    "docs:traceability": "node scripts/traceability-matrix.mjs",
+    "docs:traceability:check": "node scripts/traceability-matrix.mjs --check",
+    "postinstall": "npm install --prefix e2e"
+  }
+}

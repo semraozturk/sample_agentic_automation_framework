@@ -1,0 +1,9 @@
+{
+  "name": "us-001-test-it",
+  "private": true,
+  "type": "module",
+  "description": "One-off /test-it harness for US-001. Not product code.",
+  "dependencies": {
+    "playwright": "^1.62.1"
+  }
+}

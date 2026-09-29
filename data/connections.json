@@ -1,0 +1,11 @@
+{
+  "$schema": "named database connections for test-data manifests — never inline credentials",
+  "connections": {
+    "sample": {
+      "driver": "sqlite",
+      "file": "data/sample.db",
+      "fileEnv": "PAPER_TRAIL_DB_FILE",
+      "notes": "Local sample database. Rebuild with node data/seed.mjs --reset. Override the path with PAPER_TRAIL_DB_FILE."
+    }
+  }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Landlord view — Paper Trail</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">Paper Trail</a>
+    <nav class="nav" aria-label="Main">
+      <a href="index.html">Home</a>
+      <a href="https://github.com/semraozturk/sample_agentic_automation_framework/issues">GitHub Issues</a>
+    </nav>
+  </header>
+
+  <main class="page">
+    <span class="role-tag landlord" data-testid="role-landlord">Landlord or agent</span>
+
+    <h1 data-testid="landlord-tenancy-heading">14 Willow Close, Sheffield S1 2AB</h1>
+    <p class="lede muted">
+      You are viewing this tenancy through a landlord link. Tenant-only actions
+      are not shown here.
+    </p>
+
+    <section class="card quiet" data-testid="token-hint">
+      <h2>Your link</h2>
+      <p class="muted">Keep this URL private. Anyone with it can read and reply to this log.</p>
+      <p class="token-box" data-testid="landlord-token">
+        https://paper-trail.example/landlord/7f3a9c2e-4b1d-8e6f-a0c5-9d2e1f4a8b7c
+      </p>
+    </section>
+
+    <h2>Log</h2>
+    <div data-testid="landlord-log-entries">
+      <article class="entry is-open" data-testid="landlord-entry-issue">
+        <p class="entry-when">2026-09-01 · 14:22 · Tenant</p>
+        <h3 class="entry-title">
+          Issue reported: leak under bathroom sink
+          <span class="status reported">Reported</span>
+        </h3>
+        <p class="entry-body">
+          Water pooling under the basin. Started yesterday evening.
+        </p>
+      </article>
+
+      <article class="entry is-sealed" data-testid="landlord-entry-tenancy">
+        <p class="entry-when">2026-08-28 · 10:05 · Tenant</p>
+        <h3 class="entry-title">Tenancy record started</h3>
+        <p class="entry-body">
+          Address, move-in date, and deposit recorded for this home.
+        </p>
+      </article>
+    </div>
+
+    <section class="card" data-testid="landlord-reply-form">
+      <h2>Reply to the tenant</h2>
+      <p class="muted">
+        Your reply is appended to the log with today’s date. It cannot be
+        edited afterwards — add a second entry if you need to correct yourself.
+      </p>
+
+      <form method="get" action="landlord.html">
+        <label for="reply-text">Your message</label>
+        <textarea id="reply-text" name="reply"
+          placeholder="Acknowledge the report, say what you will do, or ask a question."></textarea>
+
+        <label for="reply-action">Update status</label>
+        <select id="reply-action" name="action">
+          <option value="acknowledged">Acknowledged — we have seen this</option>
+          <option value="scheduled">Scheduled — repair booked</option>
+          <option value="resolved">Resolved — fixed</option>
+          <option value="disputed">Disputed — we disagree</option>
+        </select>
+
+        <button class="button" type="submit" data-testid="landlord-reply-submit">
+          Send reply
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Paper Trail</p>
+  </footer>
+</body>
+
+</html>
